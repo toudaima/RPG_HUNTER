@@ -22,8 +22,8 @@ import java.util.Random;
  */
 public class GamePanel extends JPanel implements Runnable {
 
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 600;
+    private static final int WIDTH = 1200;
+    private static final int HEIGHT = 800;
     private static final int FPS = 60;
 
     private GameStatusEnum gameStatus = GameStatusEnum.READY;
@@ -53,6 +53,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         // 初始化相机(世界大小设为2000x2000)
         camera = new Camera(2000, 2000);
+        //初始化空间网格
         spatialGrid = new SpatialGrid(50, 2000, 2000);
 
         // 添加键盘监听
