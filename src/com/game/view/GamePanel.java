@@ -73,7 +73,7 @@ public class GamePanel extends JPanel implements Runnable {
         player = new Player(1000, 1000);
 
         // 创建NPC
-        for(int i = 0; i < 20; i++) {
+        for(int i = 0; i < 1; i++) {
             npcList.add(new NPC(
                     random.nextInt(1800) + 100,
                     random.nextInt(1800) + 100,
@@ -95,6 +95,7 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     public void run() {
 
+        //刷新间隔
         double drawInterval = 1000000000.0 / FPS;
         double delta = 0;
         long lastTime = System.nanoTime();

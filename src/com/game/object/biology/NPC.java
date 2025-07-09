@@ -40,7 +40,7 @@ public class NPC {
         this.acceleration = new Vector2();
         this.radius = 12 + (float)Math.random() * 6;
         this.color = color;
-
+        System.out.println("创建npc");
         setRandomStateDuration();
     }
 
@@ -57,10 +57,11 @@ public class NPC {
                 wander();
                 break;
             case SEEK:
-                seek(player.getPosition());
+                //需要copy，否则会影响玩家位置
+                seek(player.getPosition().copy());
                 break;
             case FLEE:
-                flee(player.getPosition());
+                flee(player.getPosition().copy());
                 break;
             case REST:
                 rest();
@@ -117,7 +118,7 @@ public class NPC {
 
     private void changeState() {
         float rand = (float)Math.random();
-
+        System.out.println("随机值" + rand);
         if(energy < 0.4f) {
             currentState = State.REST;
         } else if(rand < 0.5f) {
@@ -127,6 +128,7 @@ public class NPC {
         } else {
             currentState = State.FLEE;
         }
+        System.out.println("更新状态：" + currentState);
 
         setRandomStateDuration();
     }

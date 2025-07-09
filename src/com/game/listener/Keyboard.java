@@ -20,13 +20,11 @@ public class Keyboard implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("按下");
         pressedKeys.add(e.getKeyCode());
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        System.out.println("放开");
         pressedKeys.remove(e.getKeyCode());
     }
 
