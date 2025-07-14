@@ -48,4 +48,8 @@ public class Camera {
     public Vector2 screenToWorld(Vector2 screenPos) {
         return new Vector2(screenPos.x + position.x, screenPos.y + position.y);
     }
+
+    public Rectangle getViewBounds() {
+        return new Rectangle((int) position.x, (int)position.y, worldWidth, worldHeight);
+    }
 }

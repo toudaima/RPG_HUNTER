@@ -2,6 +2,7 @@ package com.game.view;
 
 import com.game.camera.Camera;
 import com.game.enums.GameStatusEnum;
+import com.game.land.TerrainMap;
 import com.game.listener.Keyboard;
 import com.game.object.biology.NPC;
 import com.game.object.obstacle.Build;
@@ -44,6 +45,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     private List<NPC> npcList = new ArrayList<>();
 
+    private TerrainMap terrainMap;
+
     public GamePanel() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(new Color(30, 30, 40));
@@ -55,6 +58,7 @@ public class GamePanel extends JPanel implements Runnable {
         camera = new Camera(2000, 2000);
         //初始化空间网格
         spatialGrid = new SpatialGrid(50, 2000, 2000);
+
 
         // 添加键盘监听
         addKeyListener(new Keyboard());
@@ -90,6 +94,8 @@ public class GamePanel extends JPanel implements Runnable {
                     random.nextInt(50) + 30
             ));
         }
+        //初始化地图
+        terrainMap = new TerrainMap(2000, 2000, 50);
     }
 
     @Override
@@ -124,6 +130,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     private void update() {
+
         // 更新玩家
         player.update();
 
@@ -154,6 +161,8 @@ public class GamePanel extends JPanel implements Runnable {
 
             // 应用相机变换(优先)
             camera.applyTransform(g2);
+
+            terrainMap.draw(g2, camera);
 
             // 绘制障碍物
             for(Build build : obstacleList) {
